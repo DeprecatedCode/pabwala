@@ -1,0 +1,74 @@
+/**
+ * Locker main stylesheet.
+ * By Nate Ferrero
+ */
+@import "lib/elements";
+@import "lib/grid";
+@import "lib/reset";
+
+ul.ui-list, div.ui-content {
+  position: absolute;
+}
+
+@font-size: 14px;
+@icon: 32px;
+@space: 8px;
+@diff: @icon/2 - @font-size/2 - 2;
+
+body, input, textarea {
+  font-family: "Lucida Grande", "Sans", "Helvetica";
+  font-size: @font-size;
+}
+
+/**
+ * General list style
+ */
+ul.ui-list {
+  padding: @space 0;
+
+  /**
+   * List element
+   */
+  li {
+    height: @icon;
+    padding: @space;
+    display: block;
+    position: relative;
+
+    /**
+     * List element hover
+     */
+    &:hover {
+      .gradient(#efefef, #e8e8e8, #efefef);
+    }
+
+    /**
+     * List element sections
+     */
+    span {
+      display: block;
+      position: absolute;
+      overflow: hidden;
+
+      /**
+       * List element icon
+       */
+      &.icon {
+        top: @space;
+        left: 2 * @space;
+        bottom: @space;
+        width: @icon;
+      }
+    
+      /**
+       * List element label
+       */
+      &.label {
+        top: @space + @diff;
+        left: @icon + 3 * @space;
+        right: 2 * @space;
+        bottom: 0;
+      }
+    }
+  }
+}
