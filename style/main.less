@@ -3,6 +3,8 @@
  * By Nate Ferrero
  */
 @import "lib/elements";
+
+@grid: 100px;
 @import "lib/grid";
 @import "lib/reset";
 
@@ -11,6 +13,7 @@ ul.ui-list, div.ui-content {
 }
 
 @font-size: 14px;
+@font-small: 10px;
 @icon: 32px;
 @space: 8px;
 @diff: @icon/2 - @font-size/2 - 2;
@@ -24,7 +27,10 @@ body, input, textarea {
  * General list style
  */
 ul.ui-list {
-  padding: @space 0;
+  padding: 0;
+  overflow: auto;
+
+  .inner-shadow(0, 0, @grid/4, 0.15);
 
   /**
    * List element
@@ -34,11 +40,29 @@ ul.ui-list {
     padding: @space;
     display: block;
     position: relative;
+    cursor: default;
+    white-space: nowrap;
 
     /**
      * List element hover
      */
     &:hover {
+      .gradient(#efefef, #e8e8e8, #efefef);
+    }
+
+    /**
+     * List element selected
+     */
+    &.selected {
+      background: #d8d8d8;
+    }
+
+    /**
+     * List element divider
+     */
+    &.divider {
+      height: @space / 4;
+      padding: 0;
       .gradient(#efefef, #e8e8e8, #efefef);
     }
 
@@ -66,9 +90,65 @@ ul.ui-list {
       &.label {
         top: @space + @diff;
         left: @icon + 3 * @space;
-        right: 2 * @space;
+        right: 4 * @space;
         bottom: 0;
+      }
+
+      /**
+       * List element notification
+       */
+      @notifyBorder: 2px;
+      &.notify {
+        top: @space + @diff - @notifyBorder;
+        padding: @notifyBorder;
+        right: 1.5 * @space;
+        border: @notifyBorder solid #800;
+        background: #b54;
+        color: white;
+        font-weight: bold;
+        font-size: @font-small;
+        .rounded(@notifyBorder);
       }
     }
   }
+}
+
+/**
+ * General content area outline-style
+ */
+div.ui-content {
+  background: #d8d8d8;
+
+  /**
+   * Display area 
+   */
+  div.ui-display {
+    background: white;
+    position: absolute;
+    overflow: auto;
+    left: @space;
+    right: @space;
+    bottom: @space;
+    top: @space;
+    .drop-shadow(0, 0, 12px, 0.3);
+    .rounded;
+  }
+}
+
+/**
+ * Selection color
+ */
+@selectionColor: #ffe;
+::selection {
+  background: @selectionColor;
+  color: inherit;
+}
+
+::-moz-selection {
+  background: @selectionColor;
+  color: white;
+}
+
+body {
+  -webkit-tap-highlight-color: @selectionColor;
 }
