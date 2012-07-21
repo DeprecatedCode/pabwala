@@ -12,11 +12,19 @@ ul.ui-list, div.ui-content {
   position: absolute;
 }
 
-@font-size: 14px;
+@font-size: 13px;
 @font-small: 10px;
-@icon: 32px;
-@space: 8px;
+@icon: 24px;
+@space: 6px;
 @diff: @icon/2 - @font-size/2 - 2;
+
+.clear {
+  height: 0;
+  display: block;
+  width: 0;
+  clear: both;
+  background: transparent;
+}
 
 body, input, textarea {
   font-family: "Lucida Grande", "Sans", "Helvetica";
@@ -30,7 +38,7 @@ ul.ui-list {
   padding: 0;
   overflow: auto;
 
-  .inner-shadow(0, 0, @grid/4, 0.15);
+  .inner-shadow(0, 0, @grid/2, 0.15);
 
   /**
    * List element
@@ -61,9 +69,22 @@ ul.ui-list {
      * List element divider
      */
     &.divider {
-      height: @space / 4;
+      height: @space / 3;
       padding: 0;
       .gradient(#efefef, #e8e8e8, #efefef);
+    }
+    
+    /**
+     * List element label
+     */
+    label {
+      display: block;
+      position: absolute;
+      overflow: hidden;
+      top: @space + @diff;
+      left: @icon + 3 * @space;
+      right: 4 * @space;
+      bottom: 0;
     }
 
     /**
@@ -82,16 +103,7 @@ ul.ui-list {
         left: 2 * @space;
         bottom: @space;
         width: @icon;
-      }
-    
-      /**
-       * List element label
-       */
-      &.label {
-        top: @space + @diff;
-        left: @icon + 3 * @space;
-        right: 4 * @space;
-        bottom: 0;
+        background-size: @icon @icon;
       }
 
       /**
@@ -116,8 +128,11 @@ ul.ui-list {
 /**
  * General content area outline-style
  */
+@whiter: rgba(255, 255, 255, 0.8);
+@blacker: rgba(0,0,0,0.25);
 div.ui-content {
   background: #d8d8d8;
+  cursor: default;
 
   /**
    * Display area 
@@ -131,7 +146,99 @@ div.ui-content {
     bottom: @space;
     top: @space;
     .drop-shadow(0, 0, 12px, 0.3);
-    .rounded;
+    .rounded(4px);
+
+    /**
+     * Labels
+     */
+    & > label {
+      color: #ccc;
+      text-transform: uppercase;
+      font-size: 80%;
+      font-weight: bold;
+      margin-bottom: @space / 2;
+      display: none;
+    }
+
+    /**
+     * Gallery UI
+     */
+    & > ul.ui-tab-bar {
+      list-style: none;
+      background: #d8d8d8;
+      .border-radius(4px, 0, 0, 4px);
+      border-bottom: 1px solid @blacker;
+
+      /**
+       * Tab
+       */
+      li {
+        display: inline-block;
+        padding: @space 2 * @space @space;
+        .border-radius(4px, 0, 0, 4px);
+        border-right: 1px solid @blacker;
+        .gradient;
+        color: #555;
+
+        &.selected {
+          color: #222;
+          background: #fff;
+          border-bottom: 1px solid #fff;
+          margin-bottom: -1px;
+        }
+      }
+
+    }
+
+    /**
+     * Gallery UI
+     */
+    & > ul.ui-gallery {
+      list-style: none;
+      padding: 2 * @space;
+
+      /**
+       * Gallery item
+       */
+      @ggrid: 2 * @grid;
+      @gborder: 4px;
+      li {
+        display: inline-block;
+        .inner-shadow(0, 0, 2*@space, 0.5);
+        border: @gborder solid @blacker;
+        .rounded(4px);
+        position: relative;
+        margin-right: 1.5 * @space;
+        margin-bottom: 1.5 * @space;
+        height: 2/3 * @ggrid;
+        width: @ggrid;
+
+        /**
+         * Empty gallery item
+         */
+        &.empty {
+          border: @gborder dotted @blacker;
+          background: #eee;
+        }
+
+        /**
+         * Gallery item label
+         */
+        @glshad: 3px #fff;
+        & > label {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          .drop-shadow(0, -@space / 2, 2*@space, 0.25);
+          text-align: left;
+          .rounded(2px);
+          padding: 1/2 * @space @space;
+          background: @whiter;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 
