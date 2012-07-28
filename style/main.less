@@ -4,7 +4,7 @@
  */
 @import "lib/elements";
 
-@grid: 100px;
+@grid: 110px;
 @import "lib/grid";
 @import "lib/reset";
 
@@ -15,8 +15,15 @@ ul.ui-list, div.ui-content {
 @font-size: 13px;
 @font-small: 10px;
 @icon: 24px;
+@micon: 16px;
 @space: 6px;
 @diff: @icon/2 - @font-size/2 - 2;
+
+/**
+ * Colors
+ */
+@highlight: #cda;
+@dark: #786;
 
 .clear {
   height: 0;
@@ -36,9 +43,9 @@ body, input, textarea {
  */
 ul.ui-list {
   padding: 0;
-  overflow: auto;
+    overflow: auto;
 
-  .inner-shadow(0, 0, @grid/2, 0.15);
+    .inner-shadow(0, 0, 2 * @space, 0.15);
 
   /**
    * List element
@@ -55,14 +62,14 @@ ul.ui-list {
      * List element hover
      */
     &:hover {
-      .gradient(#efefef, #e8e8e8, #efefef);
+      background: rgba(0, 0, 0, 0.05);
     }
 
     /**
      * List element selected
      */
     &.selected {
-      background: #d8d8d8;
+      background: @highlight;
     }
 
     /**
@@ -71,7 +78,7 @@ ul.ui-list {
     &.divider {
       height: @space / 3;
       padding: 0;
-      .gradient(#efefef, #e8e8e8, #efefef);
+      background: rgba(0, 0, 0, 0.1);
     }
     
     /**
@@ -83,8 +90,9 @@ ul.ui-list {
       overflow: hidden;
       top: @space + @diff;
       left: @icon + 3 * @space;
-      right: 4 * @space;
+      right: 2 * @space;
       bottom: 0;
+      color: #444;
     }
 
     /**
@@ -99,7 +107,7 @@ ul.ui-list {
        * List element icon
        */
       &.icon {
-        top: @space;
+        top: @space - 1;
         left: 2 * @space;
         bottom: @space;
         width: @icon;
@@ -131,7 +139,7 @@ ul.ui-list {
 @whiter: rgba(255, 255, 255, 0.8);
 @blacker: rgba(0,0,0,0.25);
 div.ui-content {
-  background: #d8d8d8;
+  background: @highlight;
   cursor: default;
 
   /**
@@ -149,18 +157,6 @@ div.ui-content {
     .rounded(4px);
 
     /**
-     * Labels
-     */
-    & > label {
-      color: #ccc;
-      text-transform: uppercase;
-      font-size: 80%;
-      font-weight: bold;
-      margin-bottom: @space / 2;
-      display: none;
-    }
-
-    /**
      * Gallery UI
      */
     & > ul.ui-tab-bar {
@@ -172,37 +168,112 @@ div.ui-content {
       /**
        * Tab
        */
-      li {
+      & > li {
         display: inline-block;
         padding: @space 2 * @space @space;
         .border-radius(4px, 0, 0, 4px);
         border-right: 1px solid @blacker;
         .gradient;
         color: #555;
+        opacity: 0.8;
 
+        /**
+         * Hover tab
+         */
+        &:hover {
+          opacity: 1.0;
+        }
+
+        /**
+         * Selected tab
+         */
         &.selected {
+          opacity: 1.0;
           color: #222;
           background: #fff;
           border-bottom: 1px solid #fff;
           margin-bottom: -1px;
         }
       }
+    }
 
+    /**
+     * Labels
+     */
+    & > label {
+      color: @dark;
+      font-weight: bold;
+      margin-bottom: 0;
+      padding: @space 2 * @space @space;
+      border-bottom: 1px solid #ccc;
+      display: block;
+    }
+
+    /**
+     * List UI
+     */
+    & > ul.ui-details {
+      list-style: none;
+      padding: 0;
+      display: block;
+
+      /**
+       * List item
+       */
+      & > li {
+        display: block;
+        padding: @space 2 * @space;
+        position: relative;
+        overflow: hidden;
+        height: 2 * @font-size + 1.5 * @space;
+        .gradient(#eee, #f8f8f8, #eee);
+        border-bottom: 1px solid #e0e0e0;
+
+        label, span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          position: absolute;
+        }
+
+        label {
+          top: @space;
+          left: 2 * @space;
+          width: 2 * @grid;
+        }
+
+        span.date {
+          top: @space;
+          left: 2 * @grid + @space;
+          width: @grid;
+          text-align: center;
+        }
+
+        span.url {
+          left: 2 * @space;
+          bottom: @space;
+          color: #aaa;
+          font-size: 89%;
+          color: #789;
+
+        }
+      }
     }
 
     /**
      * Gallery UI
      */
     & > ul.ui-gallery {
+      display: block;
       list-style: none;
-      padding: 2 * @space;
+      padding: 2 * @space 2 * @space 0;
 
       /**
        * Gallery item
        */
-      @ggrid: 2 * @grid;
+      @ggrid: 1.5 * @grid;
       @gborder: 4px;
-      li {
+      & > li {
         display: inline-block;
         .inner-shadow(0, 0, 2*@space, 0.5);
         border: @gborder solid @blacker;
@@ -236,6 +307,63 @@ div.ui-content {
           padding: 1/2 * @space @space;
           background: @whiter;
           font-weight: bold;
+        }
+
+        /**
+         * Gallery item hover
+         */
+        &:hover {
+
+          /**
+           * Show edit & delete on hover
+           */
+          & > span {
+            display: block;
+          }
+        }
+
+        /**
+         * Gallery item controls
+         */
+        & > span {
+          position: absolute;
+          right: @space / 2;
+          width: @micon;
+          height: @micon;
+          background-repeat: no-repeat;
+          background-size: @micon @micon;
+          background-color: transparent;
+          .rounded(2px);
+          display: none;
+
+          /**
+           * Edit
+           */
+          &.ui-edit {
+            background-image: url(icon/32/pencil.png);
+            bottom: @space / 2;
+          }
+
+          /**
+           * Delete
+           */
+          &.ui-delete {
+            background-image: url(icon/32/error.png);
+            top: @space / 2;
+            background-color: @whiter;
+          }
+
+          /**
+           * Unread
+           */
+          &.ui-unread {
+            background-image: url(icon/24x24/light_bulb.png);
+            top: @space / 2;
+            left: @space / 2;
+            right: auto;
+            display: block;
+            background-color: @blacker;
+          }
         }
       }
     }

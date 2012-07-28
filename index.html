@@ -14,68 +14,57 @@
     -->
 
     <!-- Sidebar -->
-    <ul class="ui-list l0 w2 t0 b0">
+    <ul class="ui-list l0 w1 t0 b0">
 
       <!-- User Profile -->
-      <li><span class="icon" style="background-image: url(./style/icon/32/contact-card.png)"></span><label>Karla Ferrero</label></li>
+      <li><span class="icon" style="background-image: url(./style/icon/24X24/female_user.png)"></span><label>Karla</label></li>
 
       <li class="divider"></li>
 
-      <!-- Library -->
-      <li class="selected"><span class="icon" style="background-image: url(./style/icon/32/magnifying-glass.png)"></span><label>All Items</label></li>
+      <!-- All Items -->
+      <li class="selected"><span class="icon" style="background-image: url(./style/icon/24X24/office_folders.png)"></span><label>All</label></li>
 
-      <!-- Calendar -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/calendar-day-view.png)"></span><label>Calendar</label></li>
+      <!-- Inbox -->
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/postcard.png)"></span><label>Inbox</label></li>
 
       <!-- Tasks -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/clipboard-text.png)"></span><label>Tasks</label><span class="notify">3</span></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/note2.png)"></span><label>Tasks</label></li>
 
       <li class="divider"></li>
-
-      <!-- Apps -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/applications.png)"></span><label>Apps</label></li>
 
       <!-- Articles -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/note-yellow.png)"></span><label>Articles</label></li>
-
-      <!-- Books -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/bookshelf.png)"></span><label>Books</label></li>
-
-      <!-- Education -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/chalkboard.png)"></span><label>Education</label></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/note.png)"></span><label>Articles</label></li>
 
       <!-- News -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/newspaper.png)"></span><label>News</label></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/news.png)"></span><label>News</label></li>
 
       <!-- Shopping -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/shopping-bag-price-tag.png)"></span><label>Shopping</label></li>
-
-      <!-- Technology -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/chip.png)"></span><label>Technology</label></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/sale.png)"></span><label>Shop</label></li>
 
       <li class="divider"></li>
-
-      <!-- Music -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/musical-note.png)"></span><label>Music</label></li>
-      
-      <!-- Photos -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/camera.png)"></span><label>Photos</label></li>
 
       <!-- Videos -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/filmstrip.png)"></span><label>Videos</label></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/video_clip.png)"></span><label>Videos</label></li>
+      
+      <!-- Photos -->
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/image.png)"></span><label>Photos</label></li>
+
+      <!-- Music -->
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/music.png)"></span><label>Music</label></li>
 
       <li class="divider"></li>
 
-      <!-- Uncategorized -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/file.png)"></span><label>Uncategorized</label></li>
+      <!-- Places -->
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/favorite_place.png)"></span><label>Places</label></li>
 
+      <li class="divider"></li>
 
       <!-- Preferences -->
-      <li class=""><span class="icon" style="background-image: url(./style/icon/32/gear.png)"></span><label>Preferences</label></li>
+      <li class=""><span class="icon" style="background-image: url(./style/icon/24X24/process.png)"></span><label>Prefs</label></li>
 
     </ul>
 
-    <div class="ui-content l2 r0 t0 b0">
+    <div class="ui-content l1 r0 t0 b0">
       <div class="ui-display">
 
         <ul class="ui-tab-bar">
@@ -85,18 +74,59 @@
           <li class="">Nature</li>
           <li class="">Architecture</li>
           <li class="">Vacation Ideas</li>
+          <li class="" style="opacity: 0.5">+</li>
         </ul>
 
-        <label>Favorites</label>
         <ul class="ui-gallery">
 
-          <li class="" style="background: url(temp/los-angeles.png)"><label>Google Maps</label></li>
+          <li class="" style="background: url(temp/los-angeles.png)"><label>Google Maps</label>
+            <span class="ui-edit"></span>
+            <span class="ui-delete"></span>
+            <span class="ui-unread"></span>
+          </li>
 
-          <li class="" style="background: url(temp/facebook.png)"><label>Facebook</label></li>
+          <li class="" style="background: url(temp/facebook.png)"><label>Facebook</label>
+            <span class="ui-edit"></span>
+            <span class="ui-delete"></span>
+            <span class="ui-unread"></span>
+          </li>
 
-          <li class="empty"><label>+ Drop Here</label></li>
+          <!--li class="empty"><label>+ Drop Here</label></li-->
 
         </ul>
+
+        <label>Tasks</label>
+
+        <label>Articles</label>
+        <ul class="ui-details">
+          <li class="">&nbsp;
+            <label>This article has a very long title</label>
+            <span class="date">July 27, 2012</span>
+            <span class="url">http://some.website.com/articles/year/month/day/this-article-has-a-very-long-title.html</span>
+          </li>
+          <li class="">&nbsp;
+            <label>I love you Karla</label>
+            <span class="date">July 23, 2012</span>
+            <span class="url">http://nateferrero.com/karla/hi</span>
+          </li>
+          <li class="">&nbsp;
+            <label>How to cook Chick Peas</label>
+            <span class="date">July 19, 2012</span>
+            <span class="url">http://rachelray.com/recipes/1234235635</span>
+          </li>
+        </ul>
+
+        <label>News</label>
+
+        <label>Music</label>
+
+        <label>Photos</label>
+
+        <label>Videos</label>
+
+        <label>News</label>
+
+        <label>Shop</label>
 
       </div>
     </div>
