@@ -1,0 +1,4 @@
+PyFlakes==0.5.0
+Flask==0.9
+pyjade==1.5
+Flask-Markdown==0.3
